@@ -8,7 +8,7 @@
  * - Properly initializes and ends sessions
  */
 
-import { WINDOW_CDAPI_NOT_EXIST } from "./constants";
+import { WINDOW_BCCLIENT_NOT_EXIST } from "./constants";
 
 class BcClientSessionManager {
   constructor() {

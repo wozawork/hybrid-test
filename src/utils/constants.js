@@ -1,4 +1,5 @@
 export const WINDOW_CDAPI_NOT_EXIST = "Window cdApi does not exist";
+export const WINDOW_BCCLIENT_NOT_EXIST = "Window bcClient does not exist";
 export const ABC_NUMBER_CHARACTERS =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
