@@ -7,10 +7,10 @@ import { initializeBioCatch } from "./utils/bioCatchSessionManager";
 
 function App() {
   useEffect(() => {
-isHybrid = true; // This should be set based on your environment or logic
-if (!isHybrid) {
-  initializeBioCatch();
-}
+    const isHybrid = true; // This should be set based on your environment or logic
+    if (!isHybrid) {
+      initializeBioCatch();
+    }
     changeContext(PAGE_CONTEXT.HOME);
   }, []);
   return (
