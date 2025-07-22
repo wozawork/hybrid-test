@@ -83,26 +83,30 @@
       };
       window.cdApi = cdApi;
     } else {
-        const bcGetMetatagContent = (name) => {
-            const elem = document.querySelector(`meta[name="${name}"]`);
-            return elem ? elem.getAttribute('content') : '';
-        };
-        const bcGetCookiesContent = (key) => {
-            let result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie);
-            return result ? decodeURIComponent(result[1]) : '';
-        };
-        const bcClientConfiguration = {};
-        bcClientConfiguration['logServerURL'] = 'Customer_log_Server_URL';
-        bcClientConfiguration['enableCustomElementsProcessing'] = true;
-        bcClientConfiguration['collectionSettings'] = {
-            mode: {
-                agentType: 'secondary',
-                collectionMode: 'lean',
-            },
-        };
-        window.bcClientConfiguration = bcClientConfiguration;
-        window.bcGetMetatagContent = bcGetMetatagContent;
-        window.bcGetCookiesContent = bcGetCookiesContent;
+      console.log("Hybrid mode is true, using bcClient"); // remember to delete this line in production
+      const bcGetMetatagContent = (name) => {
+        const elem = document.querySelector(`meta[name="${name}"]`);
+        return elem ? elem.getAttribute("content") : "";
+      };
+      const bcGetCookiesContent = (key) => {
+        let result = new RegExp(
+          "(?:^|; )" + encodeURIComponent(key) + "=([^;]*)"
+        ).exec(document.cookie);
+        return result ? decodeURIComponent(result[1]) : "";
+      };
+      const bcClientConfiguration = {};
+      bcClientConfiguration["logServerURL"] =
+        "https://logs-4ff4f23f.eu.v2.we-stats.com/api/v1/sendLogs";
+      bcClientConfiguration["enableCustomElementsProcessing"] = true;
+      bcClientConfiguration["collectionSettings"] = {
+        mode: {
+          agentType: "secondary",
+          collectionMode: "lean",
+        },
+      };
+      window.bcClientConfiguration = bcClientConfiguration;
+      window.bcGetMetatagContent = bcGetMetatagContent;
+      window.bcGetCookiesContent = bcGetCookiesContent;
     }
 })(window, document);
 
