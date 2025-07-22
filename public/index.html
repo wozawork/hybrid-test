@@ -37,9 +37,11 @@ function injectIsHybridMetaTag() {
 
   if (isChrome && !isAndroid && !isIOS) {
     // Likely a desktop Chrome browser
+    console.log("Detected Chrome browser on desktop.");
     metaTag.content = "false";
   } else if (isIOS || isAndroid) {
     // Likely a mobile browser or WebView
+    console.log("Detected iOS or Android device.");
     metaTag.content = "true";
   } else {
     // Fallback for unknown environments
