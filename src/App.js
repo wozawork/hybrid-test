@@ -5,6 +5,8 @@ import { changeContext } from "./utils/sdk";
 import { PAGE_CONTEXT, PAGE_NAME } from "./utils/constants";
 import { initializeBioCatch } from "./utils/bioCatchSessionManager";
 import { isMobileDevice, isWebDevice } from "./utils/detectDevice";
+import { initializebcClient } from "./utils/bcClientSessionManager";
+import { changeContextBcClient } from "./utils/sdkbcClient";
 
 function App() {
   useEffect(() => {
@@ -12,6 +14,10 @@ function App() {
       console.log("Web device detected, initializing BioCatch");
       initializeBioCatch();
       changeContext(PAGE_CONTEXT.HOME);
+    } else {
+      console.log("Mobile device detected, initializing BioCatch Client");
+      initializebcClient();
+      changeContextBcClient(PAGE_CONTEXT.HOME);
     }
   }, []);
   return (
