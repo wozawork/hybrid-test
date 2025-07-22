@@ -16,15 +16,6 @@
     <title>React App</title>
 
   <script>
-
-    function setCSIDtoMetaTag() {
-      const csid = "abnddjdjdjdjodjdjdj01"
-      const metaTag = document.createElement('meta');
-      metaTag.name = "customerSessionId";
-      metaTag.content = csid;
-      document.head.appendChild(metaTag);
-      console.log(`Meta tag added with CSID: ${csid}`);
-    }
 function injectIsHybridMetaTag() {
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
