@@ -25,23 +25,31 @@
       document.head.appendChild(metaTag);
       console.log(`Meta tag added with CSID: ${csid}`);
     }
-    function injectIsHybridMetaTag() {
-      const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.platform) && !window.MSStream;
-  
-      const metaTag = document.createElement('meta');
-      metaTag.name = "isHybrid";
-      if (isChrome) {
-          metaTag.content = "false";
-          //setCSIDtoMetaTag();
-      } else if (isIOS) {
-          metaTag.content = "true";
-      } else {
-          metaTag.content = "true";
-      }
-      document.head.appendChild(metaTag);
-      console.log(`Meta tag added with content: ${metaTag.content}`);
+function injectIsHybridMetaTag() {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  const isChrome = /Chrome/.test(userAgent) && /Google Inc/.test(navigator.vendor);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.platform) && !window.MSStream;
+  const isAndroid = /Android/i.test(userAgent);
+
+  const metaTag = document.createElement('meta');
+  metaTag.name = "isHybrid";
+
+  if (isChrome && !isAndroid && !isIOS) {
+    // Likely a desktop Chrome browser
+    metaTag.content = "false";
+  } else if (isIOS || isAndroid) {
+    // Likely a mobile browser or WebView
+    metaTag.content = "true";
+  } else {
+    // Fallback for unknown environments
+    metaTag.content = "true";
   }
+
+  document.head.appendChild(metaTag);
+  console.log(`Meta tag added with content: ${metaTag.content}`);
+}
+
   injectIsHybridMetaTag();
   
   </script>
