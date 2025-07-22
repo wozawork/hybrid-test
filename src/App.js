@@ -4,14 +4,14 @@ import React, { useEffect } from "react";
 import { changeContext } from "./utils/sdk";
 import { PAGE_CONTEXT, PAGE_NAME } from "./utils/constants";
 import { initializeBioCatch } from "./utils/bioCatchSessionManager";
+import { isMobileDevice, isWebDevice } from "./utils/detectDevice";
 
 function App() {
   useEffect(() => {
-    const isHybrid = true; // This should be set based on your environment or logic
-    if (!isHybrid) {
+    if (isWebDevice) {
       initializeBioCatch();
+      changeContext(PAGE_CONTEXT.HOME);
     }
-    changeContext(PAGE_CONTEXT.HOME);
   }, []);
   return (
     <div
