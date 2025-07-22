@@ -20,65 +20,68 @@
     const isHybrid = getMetatagContent('isHybrid');
 
     if (isHybrid === 'false') {
-        const cdApi = {
-            configurationKeys: {
-                wupServerURL: 'wupServerURL',
-                logServerURL: 'logServerURL',
-                enableCustomElementsProcessing: 'enableCustomElementsProcessing',
-                collectionSettings: 'collectionSettings',
-                maxShadowDepth: 'maxShadowDepth',
-            },
+      console.log("Hybrid mode is false, using cdApi"); // remember to delete this line in production
+      const cdApi = {
+        configurationKeys: {
+          wupServerURL: "wupServerURL",
+          logServerURL: "logServerURL",
+          enableCustomElementsProcessing: "enableCustomElementsProcessing",
+          collectionSettings: "collectionSettings",
+          maxShadowDepth: "maxShadowDepth",
+        },
 
-            getMetatagContent: (name) => {
-                const elem = document.querySelector(`meta[name="${name}"]`);
-                return elem ? elem.getAttribute('content') : '';
-            },
+        getMetatagContent: (name) => {
+          const elem = document.querySelector(`meta[name="${name}"]`);
+          return elem ? elem.getAttribute("content") : "";
+        },
 
-            getConfigurations: function (callback) {
-                const configurations = {};
-                configurations[cdApi.configurationKeys.wupServerURL] =
-                    'https://wup-4ff4f23f.eu.v2.we-stats.com/client/v3.1/web/wup?v=1&cid=dummy';
-                configurations[cdApi.configurationKeys.logServerURL] =
-                    'https://logs-4ff4f23f.eu.v2.we-stats.com/api/v1/sendLogs';
-                configurations[cdApi.configurationKeys.enableCustomElementsProcessing] = true;
-                configurations[cdApi.configurationKeys.maxShadowDepth] = 25;
-                configurations[cdApi.configurationKeys.collectionSettings] = {
-                    elementSettings: { customElementAttribute: 'data-bb' },
-                };
-                callback(configurations);
-            },
+        getConfigurations: function (callback) {
+          const configurations = {};
+          configurations[cdApi.configurationKeys.wupServerURL] =
+            "https://wup-4ff4f23f.eu.v2.we-stats.com/client/v3.1/web/wup?v=1&cid=dummy";
+          configurations[cdApi.configurationKeys.logServerURL] =
+            "https://logs-4ff4f23f.eu.v2.we-stats.com/api/v1/sendLogs";
+          configurations[
+            cdApi.configurationKeys.enableCustomElementsProcessing
+          ] = true;
+          configurations[cdApi.configurationKeys.maxShadowDepth] = 25;
+          configurations[cdApi.configurationKeys.collectionSettings] = {
+            elementSettings: { customElementAttribute: "data-bb" },
+          };
+          callback(configurations);
+        },
 
-            postMessage: function (message) {
-                window.postMessage(message, window.location.origin);
-            },
+        postMessage: function (message) {
+          window.postMessage(message, window.location.origin);
+        },
 
-            changeContext: function (contextName) {
-                this.postMessage({
-                    type: 'ContextChange',
-                    context: contextName,
-                });
-            },
+        changeContext: function (contextName) {
+          this.postMessage({
+            type: "ContextChange",
+            context: contextName,
+          });
+        },
 
-            startNewSession: function (csid) {
-                this.postMessage({
-                    type: 'ResetSession',
-                    resetReason: 'customerApi',
-                    csid,
-                });
-            },
+        startNewSession: function (csid) {
+          this.postMessage({
+            type: "ResetSession",
+            resetReason: "customerApi",
+            csid,
+          });
+        },
 
-            setCustomerSessionId: function (csid) {
-                this.postMessage({ type: 'cdSetCsid', csid: csid });
-            },
+        setCustomerSessionId: function (csid) {
+          this.postMessage({ type: "cdSetCsid", csid: csid });
+        },
 
-            setCustomerBrand: function (brand) {
-                this.postMessage({
-                    type: 'cdSetCustomerBrand',
-                    brand: brand,
-                });
-            },
-        };
-        window.cdApi = cdApi;
+        setCustomerBrand: function (brand) {
+          this.postMessage({
+            type: "cdSetCustomerBrand",
+            brand: brand,
+          });
+        },
+      };
+      window.cdApi = cdApi;
     } else {
         const bcGetMetatagContent = (name) => {
             const elem = document.querySelector(`meta[name="${name}"]`);
