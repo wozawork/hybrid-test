@@ -15,38 +15,6 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>React App</title>
     <script></script>
-
-  <script>
-function injectIsHybridMetaTag() {
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-  const isChrome = /Chrome/.test(userAgent) && /Google Inc/.test(navigator.vendor);
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.platform) && !window.MSStream;
-  const isAndroid = /Android/i.test(userAgent);
-
-  const metaTag = document.createElement('meta');
-  metaTag.name = "isHybrid";
-
-  if (isChrome && !isAndroid && !isIOS) {
-    // Likely a desktop Chrome browser
-    console.log("Detected Chrome browser on desktop.");
-    metaTag.content = "false";
-  } else if (isIOS || isAndroid) {
-    // Likely a mobile browser or WebView
-    console.log("Detected iOS or Android device.");
-    metaTag.content = "true";
-  } else {
-    // Fallback for unknown environments
-    metaTag.content = "true";
-  }
-    metaTag.content = "true";
-  document.head.appendChild(metaTag);
-  console.log(`Meta tag added with content: ${metaTag.content}`);
-}
-
-  //injectIsHybridMetaTag();
-  
-  </script>
   <script type="text/javascript" src="%PUBLIC_URL%/detectDeviceMeta.js"></script>
   <script type="text/javascript" src="%PUBLIC_URL%/cdApiAndBcClient.js"></script>
   <script type="text/javascript" src="%PUBLIC_URL%/sloth2.47.0.3014.9f8dffe.min.js" async onload='initializeClient()'></script>
