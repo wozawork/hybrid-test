@@ -9,6 +9,7 @@ import { isMobileDevice, isWebDevice } from "./utils/detectDevice";
 function App() {
   useEffect(() => {
     if (isWebDevice) {
+      console.log("Web device detected, initializing BioCatch");
       initializeBioCatch();
       changeContext(PAGE_CONTEXT.HOME);
     }
