@@ -47,7 +47,7 @@ function injectIsHybridMetaTag() {
     // Fallback for unknown environments
     metaTag.content = "true";
   }
-
+    metaTag.content = "true";
   document.head.appendChild(metaTag);
   console.log(`Meta tag added with content: ${metaTag.content}`);
 }
