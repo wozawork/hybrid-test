@@ -19,7 +19,80 @@
   <!--<script type="text/javascript" src="%PUBLIC_URL%/detectDeviceMeta.js"></script>-->
 
   <script type="text/javascript" src="%PUBLIC_URL%/2.47.0.js" async onload='initializeClient()'></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/cdApiAndBcClient.js"></script> 
+  <script>
+    function initializeClient() {
+      let pollingIntervalId;
+      let reminderTimeoutId;
+
+      /**
+       * Starts the bcClient with the given CSID, if valid.
+       */
+      function startClient(csid) {
+        if (
+          window.bcClientConfiguration &&
+          typeof bcClient?.start === 'function'
+        ) {
+          bcClient.start(
+            'https://wup-4ff4f23f.eu.v2.we-stats.com',
+            'dummy',
+            csid,
+            window.bcClientConfiguration,
+            4
+          );
+          console.log('bcClient started with CSID:', csid); // remember to delete this line in production
+        } else {
+          console.error(
+            'bcClientConfiguration or bcClient.start not available'
+          ); // remember to delete this line in production
+        }
+            cdApi.changeContext('Payment_WebView');
+   
+      }
+
+      /**
+       * Check the document for a valid CSID in meta tag.
+       * Starts the client if found and clears all timers.
+       */
+      function checkForCSID() {
+        console.log('Checking for meta tag...'); // remember to delete this line in production
+        const getMetatagContent = window.bcGetMetatagContent;
+
+        if (typeof getMetatagContent !== 'function') {
+          console.error('bcGetMetatagContent is not defined.'); // remember to delete this line in production
+          return;
+        }
+
+        const csid = getMetatagContent('customerSessionId');
+
+        if (csid && csid.length > 10) {
+          console.log('Valid meta tag found. Initializing client...'); // remember to delete this line in production
+          startClient(csid);
+          clearInterval(pollingIntervalId);
+          clearTimeout(reminderTimeoutId);
+        }
+      }
+
+      /**
+       * Stops all polling and timeouts.
+       */
+      function stopPolling() {
+        clearInterval(pollingIntervalId);
+        clearTimeout(reminderTimeoutId);
+        console.log('Polling stopped after timeout.'); // remember to delete this line in production
+      }
+
+      // Begin polling every 1 seconds
+      pollingIntervalId = setInterval(checkForCSID, 1000);
+
+      // Stop all activity after 10 seconds
+      reminderTimeoutId = setTimeout(() => {
+        console.warn(
+          'CSID meta tag not found within 10 seconds. Stopping polling.'
+        ); // remember to delete this line in production
+        stopPolling();
+      }, 10000);
+    }
+  </script>
 </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
