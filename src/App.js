@@ -20,7 +20,7 @@ function App() {
       changeContext(PAGE_CONTEXT.HOME);
     } else if (isWebView()) {
       console.log("WebView detected, initializing BioCatch Client");
-      initializebcClient();
+      //initializebcClient();
       changeContextBcClient(PAGE_CONTEXT.HOME);
     } else if (isMobileBrowser()) {
       console.log("Mobile browser detected, initializing BioCatch");
