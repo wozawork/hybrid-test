@@ -2,7 +2,7 @@
   "name": "bc-client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://wozawork.github.io/hybrid-test",
+  "homepage": "https://wozawork.github.io/hybrid-test/build",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
