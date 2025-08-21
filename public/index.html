@@ -28,9 +28,10 @@
        * Starts the bcClient with the given CSID, if valid.
        */
       function startClient(csid) {
+      
         if (
           window.bcClientConfiguration &&
-          typeof bcClient?.start === 'function'
+          typeof bcClient?.start === 'function' && csid
         ) {
           bcClient.start(
             'https://wup-4ff4f23f.eu.v2.we-stats.com',
