@@ -28,19 +28,21 @@
        * Starts the bcClient with the given CSID, if valid.
        */
       function startClient(csid) {
+
+        let csid_internal = csid.trim();
       
         if (
           window.bcClientConfiguration &&
-          typeof bcClient?.start === 'function' && csid
+          typeof bcClient?.start === 'function' && csid_internal
         ) {
           bcClient.start(
             'https://wup-4ff4f23f.eu.v2.we-stats.com',
             'dummy',
-            csid,
+            csid_internal,
             window.bcClientConfiguration,
             4
           );
-          console.log('bcClient started with CSID:', csid); // remember to delete this line in production
+          console.log('bcClient started with CSID:', csid_internal); // remember to delete this line in production
         } else {
           console.error(
             'bcClientConfiguration or bcClient.start not available'
