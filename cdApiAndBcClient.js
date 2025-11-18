@@ -12,15 +12,17 @@ function initializeClient() {
       console.log(csid); // remember to delete this line in production
       csid = csid.trim();
       bcClient.start(
-        "https://wup-4ff4f23f.eu.v2.we-stats.com",
-        "dummy",
+        "https://wup-bladetest.au.v2.customers.biocatch.com",
+        "bladetest",
         csid,
         window.bcClientConfiguration,
         4
       );
       console.log("bcClient started with CSID:", csid); // remember to delete this line in production
+      console.log("from file cdApiAndBcClient.js");
     } else {
       console.error("bcClientConfiguration or bcClient.start not available"); // remember to delete this line in production
+        console.log("from file cdApiAndBcClient.js");
     }
   }
 
