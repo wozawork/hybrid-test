@@ -9,7 +9,6 @@ import {
   isWebView,
   isMobileBrowser,
 } from "./utils/detectDevice";
-import { initializebcClient } from "./utils/bcClientSessionManager";
 import { changeContextBcClient } from "./utils/sdkbcClient";
 
 function App() {
@@ -18,9 +17,10 @@ function App() {
       console.log("Desktop browser detected, initializing BioCatch");
       initializeBioCatch();
       changeContext(PAGE_CONTEXT.HOME);
+      console.log("BioCatch initialized for Desktop");
     } else if (isWebView()) {
       console.log("WebView detected, initializing BioCatch Client");
-      //initializebcClient();
+      console.log("BioCatch Client initialized for WebView");
       changeContextBcClient(PAGE_CONTEXT.HOME);
     } else if (isMobileBrowser()) {
       console.log("Mobile browser detected, initializing BioCatch");
@@ -40,10 +40,14 @@ function App() {
         fontFamily: "Arial, sans-serif",
         padding: "20px",
       }}>
-      <h2 style={{ marginBottom: 0 }}>Log in to</h2>
-      <h1 style={{ marginTop: 0, color: "#005eb8" }}>ANZ Internet Banking</h1>
+      <div style={{ textAlign: "center" }}>
+        <img
+          src="https://cdn.netwealth.com.au/branding/logo-netwealth.png"
+          alt="logo"
+          style={{ width: "150px", height: "auto" }}
+        />
+      </div>
 
-      <label htmlFor="crn">Customer Registration Number</label>
       <input
         type="text"
         id="crn"
@@ -102,7 +106,7 @@ function App() {
       <hr style={{ margin: "20px 0" }} />
 
       <p>
-        New to Internet Banking?{" "}
+        New to Natwealth?{" "}
         <a href="#" style={{ color: "#6a1b9a" }}>
           Register
         </a>

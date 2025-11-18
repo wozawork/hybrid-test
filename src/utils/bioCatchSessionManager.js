@@ -64,7 +64,7 @@ class BioCatchSessionManager {
         const newCSID = this.generateCSID();
 
         // IMPORTANT: Call startNewSession first, then set CSID
-        window.cdApi.startNewSession();
+        //window.cdApi.startNewSession();
 
         // Wait a bit for session to initialize
         setTimeout(() => {

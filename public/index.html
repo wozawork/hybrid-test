@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
-
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,14 +9,12 @@
       name="description"
       content="Web site created using create-react-app"
     />
-    <meta name="isHybrid" content="true"/>
+    <meta name="isHybrid" content="false"/>
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>React App</title>
     <script></script>
-  <!--<script type="text/javascript" src="%PUBLIC_URL%/detectDeviceMeta.js"></script>-->
-
-  <script type="text/javascript" src="%PUBLIC_URL%/2.47.0.js" async onload='initializeClient()'></script>
+  <script type="text/javascript" src="%PUBLIC_URL%/2.52.0.js" async onload='initializeClient()'></script>
   <script>
     function initializeClient() {
       let pollingIntervalId;
@@ -36,16 +32,19 @@
           typeof bcClient?.start === 'function' && csid_internal
         ) {
           bcClient.start(
-            'https://wup-4ff4f23f.eu.v2.we-stats.com',
-            'dummy',
+            'https://wup-bladetest.au.v2.customers.biocatch.com',
+            'bladetest',
             csid_internal,
             window.bcClientConfiguration,
             4
           );
           console.log('bcClient started with CSID:', csid_internal); // remember to delete this line in production
+            console.log("from file cdApiAndBcClient.js not");
         } else {
+             console.log("from file cdApiAndBcClient.js not");
           console.error(
             'bcClientConfiguration or bcClient.start not available'
+            
           ); // remember to delete this line in production
         }
             cdApi.changeContext('Payment_WebView');
@@ -96,9 +95,9 @@
       }, 10000);
     }
   </script>
+
 </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
 </html>

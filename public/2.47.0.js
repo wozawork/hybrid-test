@@ -39,9 +39,9 @@
       getConfigurations: function (callback) {
         const configurations = {};
         configurations[cdApi.configurationKeys.wupServerURL] =
-          "https://wup-4ff4f23f.eu.v2.we-stats.com/client/v3.1/web/wup?v=1&cid=dummy";
+          "https://wup-bladetest.au.v2.customers.biocatch.com/client/v3.1/web/wup?v=1&cid=bladetest";
         configurations[cdApi.configurationKeys.logServerURL] =
-          "https://logs-4ff4f23f.eu.v2.we-stats.com/api/v1/sendLogs";
+          "https://log-bladetest.au.v2.customers.biocatch.com/api/v1/sendLogs";
         configurations[
           cdApi.configurationKeys.enableCustomElementsProcessing
         ] = true;
@@ -97,7 +97,7 @@
     };
     const bcClientConfiguration = {};
     bcClientConfiguration["logServerURL"] =
-      "https://logs-4ff4f23f.eu.v2.we-stats.com/api/v1/sendLogs";
+      "https://log-bladetest.au.v2.customers.biocatch.com/api/v1/sendLogs";
     bcClientConfiguration["enableCustomElementsProcessing"] = true;
     bcClientConfiguration["collectionSettings"] = {
       mode: {
